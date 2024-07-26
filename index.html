@@ -3,10 +3,12 @@
     <title></title>
 </head>
 <body>
-    <input type="button" value="Download PDF File" onclick="DownloadFile('encrypted.pdf')" />
+    <p><input type="button" value="Download as Blob via ajax" onclick="DownloadFileAjax('encrypted.pdf')" /></p>
+    <p><input type="button" value="Download via window.location" onclick="DownloadFile('encrypted.pdf')" /></p>
+    
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
     <script type="text/javascript">
-        function DownloadFile(fileName) {
+        function DownloadFileAjax(fileName) {
             //Set the File URL.
             var url = fileName;
  
@@ -46,6 +48,10 @@
                     }
                 }
             });
+        };
+        function DownloadFile(fileName) {
+            var url = fileName;
+            window.open(url, 'Download');
         };
     </script>
 </body>

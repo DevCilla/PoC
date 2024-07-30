@@ -1,14 +1,13 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
     <title></title>
-</head>
-<body>
-    <p><input type="button" value="Download as Blob via ajax" onclick="DownloadFileAjax('encrypted.pdf')" /></p>
-    <p><input type="button" value="Download via window.location" onclick="DownloadFile('encrypted.pdf')" /></p>
-    
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-    <script type="text/javascript">
-        function DownloadFileAjax(fileName) {
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
+    <script type="text/javascript">        
+        function DownloadFile(fileName) {
             //Set the File URL.
             var url = fileName;
  
@@ -49,10 +48,22 @@
                 }
             });
         };
-        function DownloadFile(fileName) {
-            var url = fileName;
-            window.location.assign(url);
-        };
     </script>
+    <script>
+        $( function() {
+            $( "#dialog" ).dialog({autoOpen: false});
+        
+            $( "#opener" ).on( "click", function() {
+              $( "#dialog" ).dialog( "open" );
+            });
+        } );
+    </script>
+</head>
+<body>
+    <button id="opener">Open Dialog</button>
+    <input type="button" value="Download PDF File" onclick="DownloadFile('encrypted.pdf')" />
+    <div id="dialog" title="Basic dialog">
+        <p>This is an animated dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+    </div>
 </body>
 </html>

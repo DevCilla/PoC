@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
     <script type="text/javascript">        
-        function DownloadFile(fileName) {
+        function DownloadAjaxFile(fileName) {
             //Set the File URL.
             var url = fileName;
  
@@ -48,6 +48,11 @@
                 }
             });
         };
+
+        function DownloadFile(fileName) {
+            var url = fileName;
+            window.open(url, 'Download');
+        };
     </script>
     <script>
         $( function() {
@@ -60,10 +65,11 @@
     </script>
 </head>
 <body>
-    <button id="opener">Open Dialog</button>
+    <button id="opener">Open Dialog</button>    
     <input type="button" value="Download PDF File" onclick="DownloadFile('encrypted.pdf')" />
     <div id="dialog" title="Basic dialog">
         <p>This is an animated dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+        <input type="button" value="Download as Blob via ajax" onclick="DownloadAjaxFile('encrypted.pdf')" />
     </div>
 </body>
 </html>

@@ -56,7 +56,19 @@
     </script>
     <script>
         $( function() {
-            $( "#dialog" ).dialog({autoOpen: false});
+            $( "#dialog" ).dialog({
+                autoOpen: false,
+                modal: true,
+                buttons: {
+                    "Download": function() {
+                        $(this).dialog("close");
+                        DownloadAjaxFile('encrypted.pdf');
+                    },
+                    Cancel: function() {
+                        $(this).dialog("close");
+                    }
+                }
+            });
         
             $( "#opener" ).on( "click", function() {
               $( "#dialog" ).dialog( "open" );
@@ -69,7 +81,7 @@
     <input type="button" value="Download PDF File" onclick="DownloadFile('encrypted.pdf')" />
     <div id="dialog" title="Basic dialog">
         <p>This is an animated dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
-        <input type="button" value="Download as Blob via ajax" onclick="DownloadAjaxFile('encrypted.pdf')" />
+        <!--<input type="button" value="Download as Blob via ajax" onclick="DownloadAjaxFile('encrypted.pdf')" />-->
     </div>
 </body>
 </html>

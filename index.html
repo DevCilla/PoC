@@ -18,12 +18,11 @@
                     async: true,                                        
                     success: function (data) {
                         //console.log(data);
-                        $(dlForm).perform("DL_FILE", {
-                            download: true,
-                            method: "get",
+                        $.ajax({
+                            type: "GET",
                             url: url,
-                            completed: completedCallback
-                        })
+                            completed: completedCallback;
+                        });
                     }
                 });
             },

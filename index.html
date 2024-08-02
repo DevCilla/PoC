@@ -29,7 +29,7 @@
             },
             _initForm: function() {
                 var form = $("#DL_FORM");
-                return form.length ? form : $("<form id='DL_FORM' name='dl_form' method='post' action='https://poc.great-site.net/download.php'></form>").appendTo(document.body)
+                return form.length ? form : $("<form id='DL_FORM' name='dl_form' method='get'></form>").appendTo(document.body)
             }
         };
     </script>
@@ -58,7 +58,7 @@
 <body>
     <button id="opener">Open Dialog</button>    
     <input type="button" value="Download PDF File" onclick="FileUtils.download()" />    
-    <form id='DL_FORM' name='dl_form' method='post' target="MULTIPART_IFRAME_" action="#">
+    <form id='DL_FORM' name='dl_form' method='get' target="MULTIPART_IFRAME_" action="#">
         <input name="filename" id="filename" value="" type="hidden">
     </form>
     <iframe id="MULTIPART_IFRAME_" style="display:none" name="MULTIPART_IFRAME_" >

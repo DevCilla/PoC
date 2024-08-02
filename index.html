@@ -2,14 +2,13 @@
 <head>
     <title></title>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
     <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
     <script type="text/javascript">        
         var FileUtils = {
-            downloadAjax: function(fileName){
-                var url = fileName;
+            downloadAjax: function(){
+                var url = "filename.json";
                 var dlForm = this._initForm();
                 var completedCallback = null;
                 $.ajax({
@@ -18,21 +17,18 @@
                     async: true,                                        
                     success: function (data) {
                         //console.log(data);
-                        $.ajax({
-                            type: "GET",
-                            url: url,
-                            completed: completedCallback
-                        });
+                        $(dlForm).find("#filename").val(data.filename);
+                        $(dlForm).submit();
                     }
                 });
             },
-            download: function(fileName){
-                var url = fileName;
+            download: function(){
+                var url = "encrypted.pdf";
                 window.open(url, 'Download');
             },
             _initForm: function() {
                 var form = $("#DL_FORM");
-                return form.length ? form : $("<form id='DL_FORM' name='dl_form' method='post'></form>").appendTo(document.body)
+                return form.length ? form : $("<form id='DL_FORM' name='dl_form' method='post' action='download.php'></form>").appendTo(document.body)
             }
         };
     </script>
@@ -44,7 +40,7 @@
                 buttons: {
                     "Download": function() {
                         $(this).dialog("close");
-                        FileUtils.downloadAjax('encrypted.pdf');
+                        FileUtils.downloadAjax();
                     },
                     Cancel: function() {
                         $(this).dialog("close");
@@ -60,8 +56,10 @@
 </head>
 <body>
     <button id="opener">Open Dialog</button>    
-    <input type="button" value="Download PDF File" onclick="FileUtils.download('encrypted.pdf')" />    
-    <form id='DL_FORM' name='dl_form' method='get' target="MULTIPART_IFRAME_" action=""></form>
+    <input type="button" value="Download PDF File" onclick="FileUtils.download()" />    
+    <form id='DL_FORM' name='dl_form' method='post' target="MULTIPART_IFRAME_" action="download.php">
+        <input name="filename" id="filename" value="" type="hidden">
+    </form>
     <iframe id="MULTIPART_IFRAME_" style="display:none" name="MULTIPART_IFRAME_" src="javascript:false"></iframe>
     <div id="dialog" title="Basic dialog">
         <p>This is an animated dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>

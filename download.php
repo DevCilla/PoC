@@ -1,6 +1,8 @@
 <?php
    $filePath = htmlspecialchars($_GET['filename']);
 
+   header('Access-Control-Allow-Origin: https://devcilla.github.io');
+   header('Access-Control-Allow-Method: POST, GET');
    // Set the Content-Type header to application/octet-stream
    header('Content-Type: application/octet-stream');
 

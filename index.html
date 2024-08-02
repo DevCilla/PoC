@@ -26,7 +26,7 @@
             },
             download: function(){
                 //var url = "encrypted.pdf";
-                var url = "https://poc.great-site.net/download.php?filename=encrypted.pdf";
+                var url = "";
                 window.open(url, 'Download');
             },
             _initForm: function() {
@@ -60,7 +60,7 @@
 <body>
     <button id="opener">Open Dialog</button>    
     <input type="button" value="Download PDF File" onclick="FileUtils.download()" />    
-    <form id='DL_FORM' name='dl_form' method='get' target="MULTIPART_IFRAME_" action="https://poc.great-site.net/download.php">
+    <form id='DL_FORM' name='dl_form' method='get' target="MULTIPART_IFRAME_" action="">
         <input name="filename" id="filename" value="" type="hidden">
     </form>
     <iframe id="MULTIPART_IFRAME_" style="display:none" name="MULTIPART_IFRAME_" src="javascript:false;"></iframe>

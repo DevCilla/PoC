@@ -1,5 +1,5 @@
 <?php
-   $filePath = htmlspecialchars($_POST['filename']);
+   $filePath = htmlspecialchars($_GET['filename']);
 
    // Set the Content-Type header to application/octet-stream
    header('Content-Type: application/octet-stream');
